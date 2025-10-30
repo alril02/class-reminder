@@ -13,17 +13,27 @@
           border-bottom-left-radius: 80px;
         "
       >
-        <div class="text-h5 text-white text-bold q-mb-xs">Hello!</div>
-        <div class="text-subtitle2 text-white">Welcome to Class Reminder</div>
+        <div class="text-h5 text-white text-bold q-mb-xs">Create Account</div>
+        <div class="text-subtitle2 text-white">Join Class Reminder</div>
         <q-img
           src="https://cdn-icons-png.flaticon.com/512/616/616408.png"
           style="width: 70px; height: 70px; margin-top: 10px"
         />
       </div>
 
-      <!-- Form login -->
+      <!-- Form signup -->
       <div class="q-pa-md full-width" style="margin-top: -20px">
-        <div class="text-h6 text-center q-mb-md">Login</div>
+        <div class="text-h6 text-center q-mb-md">Sign Up</div>
+
+        <!-- ✅ Kolom Nama -->
+        <q-input
+          filled
+          rounded
+          v-model="name"
+          label="Full Name"
+          class="q-mb-md input-field"
+          bg-color="white"
+        />
 
         <!-- ✅ Kolom Email -->
         <q-input
@@ -42,25 +52,32 @@
           v-model="password"
           label="Password"
           type="password"
-          class="q-mb-sm input-field"
+          class="q-mb-md input-field"
           bg-color="white"
         />
 
-        <div class="text-right text-caption text-green q-mb-md cursor-pointer">
-          Forgot Password?
-        </div>
+        <!-- ✅ Konfirmasi Password -->
+        <q-input
+          filled
+          rounded
+          v-model="confirmPassword"
+          label="Confirm Password"
+          type="password"
+          class="q-mb-md input-field"
+          bg-color="white"
+        />
 
-        <!-- Tombol Login -->
+        <!-- Tombol Signup -->
         <q-btn
-          label="LOGIN"
+          label="SIGN UP"
           color="green"
           class="full-width text-white q-mb-md"
           style="border-radius: 25px; height: 45px"
         />
 
-        <!-- 🔹 Login dengan akun sosial -->
+        <!-- 🔹 Tambahan: Login dengan akun sosial -->
         <div class="column items-center q-mt-sm">
-          <div class="text-caption text-grey q-mb-sm">or login with</div>
+          <div class="text-caption text-grey q-mb-sm">or sign up with</div>
           <div class="row justify-center q-gutter-md">
             <q-btn
               round
@@ -89,9 +106,10 @@
           </div>
         </div>
 
+        <!-- 🔹 Link ke Login -->
         <div class="text-center text-caption q-mt-md">
-          Don’t have an account?
-          <router-link to="/signup" class="text-green text-bold">Sign Up</router-link>
+          Already have an account?
+          <router-link to="/login" class="text-green text-bold">Login</router-link>
         </div>
       </div>
     </div>
@@ -101,8 +119,10 @@
 <script setup>
 import { ref } from 'vue'
 
+const name = ref('')
 const email = ref('')
 const password = ref('')
+const confirmPassword = ref('')
 </script>
 
 <style scoped>
@@ -112,7 +132,7 @@ const password = ref('')
 
 .input-field {
   font-size: 16px;
-  color: black; /* ✅ Supaya teks jelas */
+  color: black; /* ✅ Huruf terlihat jelas */
 }
 
 .q-field__native {
@@ -120,7 +140,7 @@ const password = ref('')
 }
 
 .q-field__control {
-  min-height: 50px; /* ✅ Biar input tidak gepeng */
+  min-height: 50px; /* ✅ Tinggi input pas */
   border-radius: 25px !important;
 }
 </style>
