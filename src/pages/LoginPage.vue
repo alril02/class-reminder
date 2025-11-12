@@ -25,24 +25,14 @@
       <div class="q-pa-md full-width" style="margin-top: -20px">
         <div class="text-h6 text-center q-mb-md">Login</div>
 
-        <!-- ✅ Kolom Email -->
+        <q-input filled dense label="Email" class="q-mb-md" rounded bg-color="white" />
         <q-input
           filled
-          rounded
-          v-model="email"
-          label="Email"
-          class="q-mb-md input-field"
-          bg-color="white"
-        />
-
-        <!-- ✅ Kolom Password -->
-        <q-input
-          filled
-          rounded
-          v-model="password"
-          label="Password"
+          dense
           type="password"
-          class="q-mb-sm input-field"
+          label="Password"
+          class="q-mb-sm"
+          rounded
           bg-color="white"
         />
 
@@ -50,15 +40,14 @@
           Forgot Password?
         </div>
 
-        <!-- Tombol Login -->
         <q-btn
-          label="LOGIN"
+          label="Login"
           color="green"
           class="full-width text-white q-mb-md"
-          style="border-radius: 25px; height: 45px"
+          style="border-radius: 25px; height: 40px"
         />
 
-        <!-- 🔹 Login dengan akun sosial -->
+        <!-- 🔹 Tambahan: Login dengan akun sosial -->
         <div class="column items-center q-mt-sm">
           <div class="text-caption text-grey q-mb-sm">or login with</div>
           <div class="row justify-center q-gutter-md">
@@ -98,29 +87,10 @@
   </q-page>
 </template>
 
-<script setup>
-import { ref } from 'vue'
-
-const email = ref('')
-const password = ref('')
-</script>
+<script setup></script>
 
 <style scoped>
 .full-width {
   width: 100%;
-}
-
-.input-field {
-  font-size: 16px;
-  color: black; /* ✅ Supaya teks jelas */
-}
-
-.q-field__native {
-  padding-left: 10px;
-}
-
-.q-field__control {
-  min-height: 50px; /* ✅ Biar input tidak gepeng */
-  border-radius: 25px !important;
 }
 </style>
