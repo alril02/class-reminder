@@ -1,129 +1,177 @@
 <template>
-  <q-page class="min-h-screen flex justify-center items-center bg-[#f0f4f5] p-8">
-    <q-card class="flex max-w-[900px] w-full rounded-xl shadow-xl overflow-hidden">
-      <!-- LEFT PANEL -->
-      <div
-        class="w-1/2 bg-[#3CA89E] text-white flex flex-col justify-center p-12 relative rounded-l-xl"
-      >
-        <!-- Logo / Brand -->
-        <div class="flex items-center justify-center mb-10 space-x-3">
-          <q-icon
-            name="dashboard"
-            size="36px"
-            color="white"
-            class="bg-white/10 p-2 rounded-full shadow-sm"
-          />
-          <span class="text-xl tracking-wide font-semibold">Diprella</span>
+  <div class="min-h-screen bg-gray-100 flex items-center justify-center p-6">
+    <!-- CENTERED CARD -->
+    <div class="max-w-4xl w-full bg-white rounded-2xl shadow-2xl flex overflow-hidden relative">
+      <!-- LEFT PANEL (TEAL) -->
+      <div class="w-2/5 bg-gradient-to-br from-emerald-400 to-emerald-500 text-white p-10 relative">
+        <!-- small logo top-left -->
+        <div class="absolute top-6 left-6 flex items-center gap-3">
+          <div class="w-10 h-10 rounded border border-white p-1 flex items-center justify-center">
+            <svg
+              xmlns="http://www.w3.org/2000/svg"
+              class="w-6 h-6"
+              fill="none"
+              viewBox="0 0 24 24"
+              stroke="currentColor"
+              stroke-width="1.5"
+            >
+              <path
+                stroke-linecap="round"
+                stroke-linejoin="round"
+                d="M8 7V3m8 4V3m-9 8h10M5 21h14a2 2 0 002-2v-7a2 2 0 00-2-2H5a2 2 0 00-2 2v7a2 2 0 002 2z"
+              />
+            </svg>
+          </div>
+          <span class="font-semibold">Diprella</span>
         </div>
 
-        <!-- Welcome Section -->
-        <div class="text-center">
-          <h2 class="text-3xl font-bold mb-4">Welcome Back!</h2>
-          <p class="mb-10 opacity-80 text-sm leading-relaxed">
-            To keep connected with us please<br />
-            login with your personal info
+        <div class="h-full flex flex-col justify-center items-start pl-10 pr-6">
+          <h1 class="text-4xl md:text-5xl font-extrabold leading-tight mb-4">Welcome Back!</h1>
+          <p class="text-sm md:text-base opacity-90 mb-8 max-w-xs">
+            To keep connected with us please login with your personal info
           </p>
 
-          <q-btn
-            flat
-            label="SIGN IN"
-            rounded
-            class="border border-white w-32 text-sm font-semibold hover:bg-white hover:text-[#3CA89E] transition"
-            @click="goToLogin"
-          />
-        </div>
-      </div>
-
-      <!-- RIGHT PANEL -->
-      <div class="w-1/2 bg-white p-12 flex flex-col items-center text-center rounded-r-xl">
-        <h2 class="text-[#3CA89E] text-2xl font-semibold mb-6">Create Account</h2>
-
-        <!-- Social Buttons -->
-        <div class="flex gap-3 mb-6">
-          <q-btn
-            flat
-            rounded
-            icon="mdi-facebook"
-            class="border border-gray-300 text-gray-700 w-10 h-10 flex items-center justify-center hover:bg-gray-100 transition"
-          />
-          <q-btn
-            flat
-            rounded
-            icon="mdi-google"
-            class="border border-gray-300 text-gray-700 w-10 h-10 flex items-center justify-center hover:bg-gray-100 transition"
-          />
-          <q-btn
-            flat
-            rounded
-            icon="mdi-linkedin"
-            class="border border-gray-300 text-gray-700 w-10 h-10 flex items-center justify-center hover:bg-gray-100 transition"
-          />
+          <button
+            class="border border-white rounded-full px-8 py-2 text-sm font-semibold hover:bg-white hover:text-emerald-600 transition"
+          >
+            SIGN IN
+          </button>
         </div>
 
-        <p class="text-gray-400 text-xs mb-6 max-w-[260px]">or use your email for registration:</p>
-
-        <!-- FORM -->
-        <q-form @submit.prevent="onRegister" class="w-full max-w-[320px]">
-          <q-input
-            filled
-            rounded
-            dense
-            v-model="form.name"
-            type="text"
-            placeholder="Name"
-            class="mb-4 bg-[#f9fafb]"
-            :before="[{ icon: 'person', class: 'text-gray-400 text-xs' }]"
-          />
-          <q-input
-            filled
-            rounded
-            dense
-            v-model="form.email"
-            type="email"
-            placeholder="Email"
-            class="mb-4 bg-[#f9fafb]"
-            :before="[{ icon: 'email', class: 'text-gray-400 text-xs' }]"
-          />
-          <q-input
-            filled
-            rounded
-            dense
-            v-model="form.password"
-            type="password"
-            placeholder="Password"
-            class="mb-8 bg-[#f9fafb]"
-            :before="[{ icon: 'lock', class: 'text-gray-400 text-xs' }]"
-          />
-
-          <q-btn
-            type="submit"
-            label="SIGN UP"
-            rounded
-            class="bg-[#3CA89E] text-white w-full text-sm font-semibold hover:bg-[#329785] transition"
-          />
-        </q-form>
+        <!-- decorative circle -->
+        <div
+          class="absolute -left-24 -bottom-24 w-44 h-44 bg-yellow-300 rounded-full opacity-30"
+        ></div>
       </div>
-    </q-card>
-  </q-page>
+
+      <!-- RIGHT PANEL (FORM) -->
+      <div class="w-3/5 p-12 flex flex-col items-center justify-center">
+        <h2 class="text-2xl md:text-3xl font-semibold text-emerald-500 mb-4">Create Account</h2>
+
+        <!-- social buttons -->
+        <div class="flex items-center gap-4 mb-4">
+          <button
+            class="w-8 h-8 rounded-full border border-gray-300 flex items-center justify-center text-sm text-gray-700 hover:bg-gray-100"
+          >
+            f
+          </button>
+          <button
+            class="w-8 h-8 rounded-full border border-gray-300 flex items-center justify-center text-sm text-gray-700 hover:bg-gray-100"
+          >
+            G+
+          </button>
+          <button
+            class="w-8 h-8 rounded-full border border-gray-300 flex items-center justify-center text-sm text-gray-700 hover:bg-gray-100"
+          >
+            in
+          </button>
+        </div>
+
+        <p class="text-xs text-gray-400 mb-6">or use your email for registration:</p>
+
+        <form class="w-full max-w-sm space-y-4">
+          <!-- Name -->
+          <div class="relative">
+            <div class="absolute left-3 top-1/2 -translate-y-1/2 text-gray-400">
+              <svg
+                xmlns="http://www.w3.org/2000/svg"
+                class="w-4 h-4"
+                fill="none"
+                viewBox="0 0 24 24"
+                stroke="currentColor"
+                stroke-width="1.5"
+              >
+                <path
+                  stroke-linecap="round"
+                  stroke-linejoin="round"
+                  d="M5.121 17.804A9 9 0 1118.88 6.196 9 9 0 015.12 17.804z"
+                />
+              </svg>
+            </div>
+            <input
+              type="text"
+              placeholder="Name"
+              class="w-full pl-10 pr-4 py-3 bg-gray-50 border border-gray-100 rounded placeholder-gray-500 focus:outline-none focus:ring-2 focus:ring-emerald-200"
+            />
+          </div>
+
+          <!-- Email -->
+          <div class="relative">
+            <div class="absolute left-3 top-1/2 -translate-y-1/2 text-gray-400">
+              <svg
+                xmlns="http://www.w3.org/2000/svg"
+                class="w-4 h-4"
+                fill="none"
+                viewBox="0 0 24 24"
+                stroke="currentColor"
+                stroke-width="1.5"
+              >
+                <path
+                  stroke-linecap="round"
+                  stroke-linejoin="round"
+                  d="M16 12H8m8 0a4 4 0 00-8 0m8 0v4m0 0H8"
+                />
+              </svg>
+            </div>
+            <input
+              type="email"
+              placeholder="Email"
+              class="w-full pl-10 pr-4 py-3 bg-gray-50 border border-gray-100 rounded placeholder-gray-500 focus:outline-none focus:ring-2 focus:ring-emerald-200"
+            />
+          </div>
+
+          <!-- Password -->
+          <div class="relative">
+            <div class="absolute left-3 top-1/2 -translate-y-1/2 text-gray-400">
+              <svg
+                xmlns="http://www.w3.org/2000/svg"
+                class="w-4 h-4"
+                fill="none"
+                viewBox="0 0 24 24"
+                stroke="currentColor"
+                stroke-width="1.5"
+              >
+                <path
+                  stroke-linecap="round"
+                  stroke-linejoin="round"
+                  d="M12 11c1.657 0 3 .895 3 2v2H9v-2c0-1.105 1.343-2 3-2z"
+                />
+              </svg>
+            </div>
+            <input
+              type="password"
+              placeholder="Password"
+              class="w-full pl-10 pr-4 py-3 bg-gray-50 border border-gray-100 rounded placeholder-gray-500 focus:outline-none focus:ring-2 focus:ring-emerald-200"
+            />
+          </div>
+
+          <div class="pt-6 flex justify-center">
+            <button
+              type="submit"
+              class="px-8 py-2 bg-emerald-500 text-white rounded-full font-semibold hover:bg-emerald-600 transition"
+            >
+              SIGN UP
+            </button>
+          </div>
+        </form>
+      </div>
+
+      <!-- small shadow decoration under card -->
+      <div
+        class="absolute bottom-[-18px] left-1/2 -translate-x-1/2 w-11/12 h-6 bg-white/0 shadow-2xl rounded-2xl pointer-events-none"
+      ></div>
+    </div>
+  </div>
 </template>
 
-<script setup>
-import { ref } from 'vue'
-import { useRouter } from 'vue-router'
-
-const router = useRouter()
-const form = ref({
-  name: '',
-  email: '',
-  password: '',
-})
-
-const goToLogin = () => {
-  router.push('/login')
-}
-
-const onRegister = () => {
-  console.log('Form submitted:', form.value)
-  // TODO: panggil API registrasi di sini
-}
+<script>
+export default {}
 </script>
+
+<style>
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600&display=swap');
+
+* {
+  font-family: 'Poppins', sans-serif;
+}
+</style>

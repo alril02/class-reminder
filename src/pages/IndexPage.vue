@@ -1,13 +1,7 @@
 <template>
-  <q-page class="flex flex-center">
-    <img
-      alt="Quasar logo"
-      src="~assets/quasar-logo-vertical.svg"
-      style="width: 200px; height: 200px"
-    >
+  <q-page class="flex items-center justify-center min-h-screen">
+    <div class="bg-red-500 text-white p-10 rounded-xl">Test Tailwind</div>
   </q-page>
 </template>
 
-<script setup>
-//
-</script>
+<script setup></script>
