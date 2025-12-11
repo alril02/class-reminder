@@ -8,23 +8,41 @@
 
     <!-- SIDEBAR HARI (KIRI) -->
     <div class="day-sidebar" :class="{ collapsed: sidebarCollapsed }">
-      <!-- Tombol collapse -->
-      <button class="collapse-btn" @click="sidebarCollapsed = !sidebarCollapsed">
-        <span v-if="!sidebarCollapsed">❮</span>
-        <span v-else>❯</span>
-      </button>
-
-      <!-- Tombol hari -->
-      <div class="day-selector">
-        <button
-          v-for="(d, i) in days"
-          :key="i"
-          class="day-btn"
-          :class="{ active: selectedDay === d.value }"
-          @click="selectDay(d.value)"
-        >
-          {{ d.label }}
+      <!-- BAGIAN ATAS: GRID 4 KOTAK -->
+      <div class="sidebar-top">
+        <button class="grid-btn">
+          <div class="dot"></div>
+          <div class="dot"></div>
+          <div class="dot"></div>
+          <div class="dot"></div>
         </button>
+      </div>
+
+      <!-- BAGIAN TENGAH: HARI + TOMBOL COLLAPSE -->
+      <div class="sidebar-middle">
+        <!-- Tombol collapse -->
+        <button class="collapse-btn" @click="sidebarCollapsed = !sidebarCollapsed">
+          <span v-if="!sidebarCollapsed">❮</span>
+          <span v-else>❯</span>
+        </button>
+
+        <!-- Tombol hari -->
+        <div class="day-selector">
+          <button
+            v-for="(d, i) in days"
+            :key="i"
+            class="day-btn"
+            :class="{ active: selectedDay === d.value }"
+            @click="selectDay(d.value)"
+          >
+            {{ d.label }}
+          </button>
+        </div>
+      </div>
+
+      <!-- BAGIAN BAWAH: TOMBOL PENGATURAN -->
+      <div class="sidebar-bottom">
+        <button class="settings-btn">⚙</button>
       </div>
     </div>
 
@@ -125,13 +143,13 @@ const sidebarCollapsed = ref(false)
 
 /* HARI */
 const days = [
-  { label: 'M', value: 'mon' },
-  { label: 'T', value: 'tue' },
-  { label: 'W', value: 'wed' },
-  { label: 'T', value: 'thu' },
-  { label: 'F', value: 'fri' },
-  { label: 'S', value: 'sat' },
-  { label: 'S', value: 'sun' },
+  { label: 'M', value: 'minggu' },
+  { label: 'S', value: 'senin' },
+  { label: 'S', value: 'selasa' },
+  { label: 'R', value: 'rabu' },
+  { label: 'K', value: 'kamus' },
+  { label: 'J', value: 'jumat' },
+  { label: 'S', value: 'sabtu' },
 ]
 
 const selectedDay = ref('tue')
@@ -260,61 +278,92 @@ function closeTaskDialog() {
 /* ===== SIDEBAR KIRI ===== */
 .day-sidebar {
   position: fixed;
-  top: 70px;
-  left: 12px;
+  top: 0;
+  left: 0;
   width: 60px;
-  background: rgba(0, 0, 0, 0.45);
-  padding: 10px;
-  border-radius: 16px;
-  z-index: 40;
-  transition: width 0.25s ease;
+  height: 100vh;
+  background: #000;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: space-between;
+  padding: 15px 0;
 }
 
-.day-sidebar.collapsed {
-  width: 24px;
+/* GRID BUTTON */
+.grid-btn {
+  width: 40px;
+  height: 40px;
+  background: #333;
+  border: none;
+  border-radius: 8px;
+
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 4px;
   padding: 6px;
 }
 
-/* Tombol collapse */
-.collapse-btn {
+.grid-btn .dot {
   width: 100%;
-  height: 26px;
+  height: 100%;
+  background: #777;
+  border-radius: 4px;
+}
+
+/* MIDDLE SECTION */
+.sidebar-middle {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 15px;
+}
+
+/* COLLAPSE BUTTON */
+.collapse-btn {
+  width: 40px;
+  height: 40px;
   background: #222;
-  color: #fff;
-  border-radius: 8px;
   border: none;
-  font-size: 14px;
+  border-radius: 8px;
+  color: white;
   cursor: pointer;
-  margin-bottom: 10px;
+  font-size: 16px;
 }
 
+/* HARI */
 .day-selector {
-  display: grid;
-  gap: 8px;
-}
-
-.day-sidebar.collapsed .day-btn {
-  opacity: 0;
-  pointer-events: none;
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
 }
 
 .day-btn {
-  width: 44px;
-  height: 44px;
-  border-radius: 12px;
+  width: 40px;
+  height: 40px;
   background: #333;
-  color: #ddd;
-  font-weight: bold;
-  display: flex;
-  align-items: center;
-  justify-content: center;
+  border-radius: 8px;
   border: none;
+  color: white;
   cursor: pointer;
+  font-weight: 600;
 }
 
 .day-btn.active {
-  background: #ffb703;
-  color: black;
+  background: #ffcc00;
+  color: #000;
+}
+
+/* SETTINGS BUTTON (BOTTOM) */
+.settings-btn {
+  width: 40px;
+  height: 40px;
+  background: #333;
+  border: none;
+  border-radius: 8px;
+  font-size: 20px;
+  color: white;
+  cursor: pointer;
 }
 
 /* CONTENT */
