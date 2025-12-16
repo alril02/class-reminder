@@ -1,177 +1,138 @@
 <template>
-  <div class="min-h-screen bg-gray-100 flex items-center justify-center p-6">
-    <!-- CENTERED CARD -->
-    <div class="max-w-4xl w-full bg-white rounded-2xl shadow-2xl flex overflow-hidden relative">
-      <!-- LEFT PANEL (TEAL) -->
-      <div class="w-2/5 bg-gradient-to-br from-emerald-400 to-emerald-500 text-white p-10 relative">
-        <!-- small logo top-left -->
-        <div class="absolute top-6 left-6 flex items-center gap-3">
-          <div class="w-10 h-10 rounded border border-white p-1 flex items-center justify-center">
-            <svg
-              xmlns="http://www.w3.org/2000/svg"
-              class="w-6 h-6"
-              fill="none"
-              viewBox="0 0 24 24"
-              stroke="currentColor"
-              stroke-width="1.5"
-            >
-              <path
-                stroke-linecap="round"
-                stroke-linejoin="round"
-                d="M8 7V3m8 4V3m-9 8h10M5 21h14a2 2 0 002-2v-7a2 2 0 00-2-2H5a2 2 0 00-2 2v7a2 2 0 002 2z"
-              />
-            </svg>
-          </div>
-          <span class="font-semibold">Diprella</span>
-        </div>
-
-        <div class="h-full flex flex-col justify-center items-start pl-10 pr-6">
-          <h1 class="text-4xl md:text-5xl font-extrabold leading-tight mb-4">Welcome Back!</h1>
-          <p class="text-sm md:text-base opacity-90 mb-8 max-w-xs">
+  <q-page class="auth-wrapper">
+    <div class="auth-container" :class="{ 'show-login': showLogin }">
+      <!-- LEFT PANEL -->
+      <div class="auth-panel left-panel">
+        <div v-if="showLogin">
+          <div class="text-h4 text-bold q-mb-sm">Welcome Back!</div>
+          <div class="text-subtitle2 text-center q-mb-xl" style="max-width: 280px">
             To keep connected with us please login with your personal info
-          </p>
-
-          <button
-            class="border border-white rounded-full px-8 py-2 text-sm font-semibold hover:bg-white hover:text-emerald-600 transition"
-          >
-            SIGN IN
-          </button>
+          </div>
+          <q-btn
+            label="SIGN IN"
+            color="white"
+            text-color="teal"
+            class="q-px-xl q-py-sm"
+            style="border-radius: 25px"
+            @click="showLogin = false"
+          />
         </div>
-
-        <!-- decorative circle -->
-        <div
-          class="absolute -left-24 -bottom-24 w-44 h-44 bg-yellow-300 rounded-full opacity-30"
-        ></div>
+        <div v-else>
+          <div class="text-h4 text-bold q-mb-sm">Hello, Friend!</div>
+          <div class="text-subtitle2 text-center q-mb-xl" style="max-width: 280px">
+            Enter your personal details and start journey with us
+          </div>
+          <q-btn
+            label="SIGN UP"
+            color="white"
+            text-color="teal"
+            class="q-px-xl q-py-sm"
+            style="border-radius: 25px"
+            @click="showLogin = true"
+          />
+        </div>
       </div>
 
-      <!-- RIGHT PANEL (FORM) -->
-      <div class="w-3/5 p-12 flex flex-col items-center justify-center">
-        <h2 class="text-2xl md:text-3xl font-semibold text-emerald-500 mb-4">Create Account</h2>
+      <!-- RIGHT PANEL -->
+      <div class="auth-panel right-panel">
+        <transition name="fade">
+          <div v-if="showLogin" key="login" style="width: 100%">
+            <div class="text-h5 text-bold q-mb-md">Diprella</div>
+            <div class="text-h4 text-bold q-mb-sm">Sign in to Diprella</div>
 
-        <!-- social buttons -->
-        <div class="flex items-center gap-4 mb-4">
-          <button
-            class="w-8 h-8 rounded-full border border-gray-300 flex items-center justify-center text-sm text-gray-700 hover:bg-gray-100"
-          >
-            f
-          </button>
-          <button
-            class="w-8 h-8 rounded-full border border-gray-300 flex items-center justify-center text-sm text-gray-700 hover:bg-gray-100"
-          >
-            G+
-          </button>
-          <button
-            class="w-8 h-8 rounded-full border border-gray-300 flex items-center justify-center text-sm text-gray-700 hover:bg-gray-100"
-          >
-            in
-          </button>
-        </div>
-
-        <p class="text-xs text-gray-400 mb-6">or use your email for registration:</p>
-
-        <form class="w-full max-w-sm space-y-4">
-          <!-- Name -->
-          <div class="relative">
-            <div class="absolute left-3 top-1/2 -translate-y-1/2 text-gray-400">
-              <svg
-                xmlns="http://www.w3.org/2000/svg"
-                class="w-4 h-4"
-                fill="none"
-                viewBox="0 0 24 24"
-                stroke="currentColor"
-                stroke-width="1.5"
-              >
-                <path
-                  stroke-linecap="round"
-                  stroke-linejoin="round"
-                  d="M5.121 17.804A9 9 0 1118.88 6.196 9 9 0 015.12 17.804z"
-                />
-              </svg>
+            <div class="row q-gutter-md q-mb-md">
+              <q-btn round flat icon="fa-brands fa-facebook-f" />
+              <q-btn round flat icon="fa-brands fa-google-plus-g" />
+              <q-btn round flat icon="fa-brands fa-linkedin-in" />
             </div>
-            <input
-              type="text"
-              placeholder="Name"
-              class="w-full pl-10 pr-4 py-3 bg-gray-50 border border-gray-100 rounded placeholder-gray-500 focus:outline-none focus:ring-2 focus:ring-emerald-200"
+
+            <div class="text-caption text-grey q-mb-md">or use your email account:</div>
+
+            <q-input filled rounded label="Email" class="q-mb-md" />
+            <q-input filled rounded type="password" label="Password" class="q-mb-sm" />
+
+            <div class="text-caption text-right text-teal-10 q-mb-md">Forgot your password?</div>
+
+            <q-btn
+              label="SIGN IN"
+              class="full-width"
+              color="teal"
+              style="border-radius: 25px; height: 45px"
             />
           </div>
 
-          <!-- Email -->
-          <div class="relative">
-            <div class="absolute left-3 top-1/2 -translate-y-1/2 text-gray-400">
-              <svg
-                xmlns="http://www.w3.org/2000/svg"
-                class="w-4 h-4"
-                fill="none"
-                viewBox="0 0 24 24"
-                stroke="currentColor"
-                stroke-width="1.5"
-              >
-                <path
-                  stroke-linecap="round"
-                  stroke-linejoin="round"
-                  d="M16 12H8m8 0a4 4 0 00-8 0m8 0v4m0 0H8"
-                />
-              </svg>
+          <div v-else key="register" style="width: 100%">
+            <div class="text-h4 text-bold text-teal-10 q-mb-md">Create Account</div>
+
+            <div class="row q-gutter-md q-mb-md">
+              <q-btn round flat icon="fa-brands fa-facebook-f" style="background: #f0f0f0" />
+              <q-btn round flat icon="fa-brands fa-google-plus-g" style="background: #f0f0f0" />
+              <q-btn round flat icon="fa-brands fa-linkedin-in" style="background: #f0f0f0" />
             </div>
-            <input
-              type="email"
-              placeholder="Email"
-              class="w-full pl-10 pr-4 py-3 bg-gray-50 border border-gray-100 rounded placeholder-gray-500 focus:outline-none focus:ring-2 focus:ring-emerald-200"
+
+            <div class="text-caption text-grey q-mb-md">or use your email for registration:</div>
+
+            <q-input filled rounded label="Name" class="q-mb-md" />
+            <q-input filled rounded label="Email" class="q-mb-md" />
+            <q-input filled rounded type="password" label="Password" class="q-mb-lg" />
+
+            <q-btn
+              label="SIGN UP"
+              class="full-width"
+              style="background: #0f766e; color: white; border-radius: 25px; height: 45px"
             />
           </div>
-
-          <!-- Password -->
-          <div class="relative">
-            <div class="absolute left-3 top-1/2 -translate-y-1/2 text-gray-400">
-              <svg
-                xmlns="http://www.w3.org/2000/svg"
-                class="w-4 h-4"
-                fill="none"
-                viewBox="0 0 24 24"
-                stroke="currentColor"
-                stroke-width="1.5"
-              >
-                <path
-                  stroke-linecap="round"
-                  stroke-linejoin="round"
-                  d="M12 11c1.657 0 3 .895 3 2v2H9v-2c0-1.105 1.343-2 3-2z"
-                />
-              </svg>
-            </div>
-            <input
-              type="password"
-              placeholder="Password"
-              class="w-full pl-10 pr-4 py-3 bg-gray-50 border border-gray-100 rounded placeholder-gray-500 focus:outline-none focus:ring-2 focus:ring-emerald-200"
-            />
-          </div>
-
-          <div class="pt-6 flex justify-center">
-            <button
-              type="submit"
-              class="px-8 py-2 bg-emerald-500 text-white rounded-full font-semibold hover:bg-emerald-600 transition"
-            >
-              SIGN UP
-            </button>
-          </div>
-        </form>
+        </transition>
       </div>
-
-      <!-- small shadow decoration under card -->
-      <div
-        class="absolute bottom-[-18px] left-1/2 -translate-x-1/2 w-11/12 h-6 bg-white/0 shadow-2xl rounded-2xl pointer-events-none"
-      ></div>
     </div>
-  </div>
+  </q-page>
 </template>
 
-<script>
-export default {}
+<script setup>
+import { ref } from 'vue'
+const showLogin = ref(true)
 </script>
 
-<style>
-@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600&display=swap');
-
-* {
-  font-family: 'Poppins', sans-serif;
+<style scoped>
+.auth-wrapper {
+  background: linear-gradient(160deg, #a7f3d0, #f0abfc);
+  min-height: 100vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+.auth-container {
+  width: 720px;
+  height: 480px;
+  background: white;
+  border-radius: 32px;
+  box-shadow: 0 20px 50px rgba(0, 0, 0, 0.2);
+  display: flex;
+  overflow: hidden;
+  position: relative;
+  transition: transform 0.5s ease;
+}
+.auth-panel {
+  width: 50%;
+  padding: 48px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+.left-panel {
+  background: #0f766e;
+  color: white;
+}
+.right-panel {
+  background: white;
+}
+.fade-enter-active,
+.fade-leave-active {
+  transition: opacity 0.3s ease;
+}
+.fade-enter-from,
+.fade-leave-to {
+  opacity: 0;
 }
 </style>
