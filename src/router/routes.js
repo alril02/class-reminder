@@ -1,57 +1,62 @@
 const routes = [
+  // redirect utama
   {
     path: '/',
-    component: () => import('layouts/MainLayout.vue'),
+    redirect: '/login',
+  },
+
+  // LOGIN
+  {
+    path: '/login',
+    component: () => import('layouts/LoginLayout.vue'),
     children: [
-      // ✅ Default halaman pertama → Login
       {
         path: '',
-        component: () => import('pages/LoginPage.vue'),
-      },
-
-      // ✅ Login → setelah login pindah ke /signup
-      {
-        path: 'login',
-        component: () => import('pages/LoginPage.vue'),
-      },
-
-      // ✅ Signup → setelah signup pindah ke /schedule
-      {
-        path: 'signup',
-        component: () => import('pages/SignUpPage.vue'),
-      },
-
-      // ✅ Debug (opsional)
-      {
-        path: 'debug',
-        component: () => import('pages/DebugPage.vue'),
-      },
-
-      // ✅ Halaman Schedule
-      {
-        path: 'schedule',
-        component: () => import('pages/SchedulePage.vue'),
-      },
-
-      // ✅ Halaman Tasks
-      {
-        path: 'tasks',
-        component: () => import('pages/TasksPage.vue'),
-      },
-
-      // ✅ Settings
-      {
-        path: 'settings',
-        component: () => import('pages/SettingsPage.vue'),
+        component: () => import('pages/login/LoginPage.vue'),
       },
     ],
   },
 
-  // ✅ Register (kalau kamu masih pakai)
+  // SIGN UP
   {
-    path: '/register',
+    path: '/signup',
     component: () => import('layouts/LoginLayout.vue'),
-    children: [{ path: '', component: () => import('pages/RegisterPage.vue') }],
+    children: [
+      {
+        path: '',
+        component: () => import('pages/login/SignUpPage.vue'),
+      },
+    ],
+  },
+
+  // MAIN APP
+  {
+    path: '/app',
+    component: () => import('layouts/MainLayout.vue'),
+    children: [
+      {
+        path: '',
+        component: () => import('pages/schedule/DashboardPage.vue'),
+      },
+      {
+        path: 'tasks',
+        component: () => import('pages/schedule/TasksPage.vue'),
+      },
+      {
+        path: 'schedule',
+        component: () => import('pages/schedule/SchedulePage.vue'),
+      },
+      {
+        path: 'settings',
+        component: () => import('pages/schedule/SettingsPage.vue'),
+      },
+    ],
+  },
+
+  // 404
+  {
+    path: '/:catchAll(.*)*',
+    component: () => import('pages/ErrorNotFound.vue'),
   },
 ]
 

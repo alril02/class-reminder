@@ -81,22 +81,19 @@ const confirmPassword = ref('')
 const username = ref('')
 
 function signup() {
+  console.log('SIGNUP DIPANGGIL')
+
   if (!email.value || !password.value || !confirmPassword.value || !username.value) {
-    alert('Semua field wajib diisi')
+    console.log('FIELD KOSONG')
     return
   }
 
   if (password.value !== confirmPassword.value) {
-    alert('Password dan Confirm Password tidak sama')
+    console.log('PASSWORD TIDAK SAMA')
     return
   }
 
-  // ✅ Simpan data ke localStorage (permanen)
-  localStorage.setItem('username', username.value)
-  localStorage.setItem('email', email.value)
-  localStorage.setItem('password', password.value)
-
-  // ✅ Redirect ke halaman utama
-  router.push('/schedule')
+  console.log('PINDAH KE LOGIN...')
+  router.push('/login')
 }
 </script>

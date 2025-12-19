@@ -17,8 +17,7 @@ export const useAuthStore = defineStore('auth', {
         const response = await api.post('/register', userData)
         this.token = response.data.token
         this.user = response.data.user
-        // Store token in localStorage
-        localStorage.setItem('token', this.token)
+        // Tidak simpan token di localStorage
         return response.data
       } catch (error) {
         throw error.response?.data || error.message
@@ -30,7 +29,7 @@ export const useAuthStore = defineStore('auth', {
         const response = await api.post('/login', credentials)
         this.token = response.data.token
         this.user = response.data.user
-        localStorage.setItem('token', this.token)
+        // Tidak simpan token di localStorage
         return response.data
       } catch (error) {
         throw error.response?.data || error.message
@@ -40,15 +39,12 @@ export const useAuthStore = defineStore('auth', {
     logout() {
       this.user = null
       this.token = null
-      localStorage.removeItem('token')
+      // Tidak hapus localStorage karena tidak dipakai
     },
 
     initializeAuth() {
-      const token = localStorage.getItem('token')
-      if (token) {
-        this.token = token
-        // TODO: Validate token and fetch user data
-      }
+      // Tidak ambil token dari localStorage
+      // Token hanya aktif selama sesi berjalan
     },
   },
 })
